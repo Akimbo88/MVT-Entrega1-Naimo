@@ -6,7 +6,7 @@
 
 
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>Formulario - Agregar Profesor</h1>
+    <h1>Agregar Profesor</h1>
     
     {% if miFormulario.errors %}
 
@@ -57,7 +57,9 @@
     </ul>
    
     {% endif %}
-
+<br>
+<br>
+<a href="{% url 'LeerProfesores' %}">Ver profesores</a>
 
         
 {% endblock %}
