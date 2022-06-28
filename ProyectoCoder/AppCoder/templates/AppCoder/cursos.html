@@ -1,0 +1,52 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<h1>Agregar Cursos</h1>
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    {% if miFormulario.errors %}
+
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+    <form action="" method="POST">{% csrf_token %}
+
+        <!-- Acá está la magia de Django-->
+        
+        <table>
+            {{ miFormulario.as_table }}
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>
+<br>
+<br>
+<h3>Podes buscar una camada:</h3>
+
+    <form action="/AppCoder/buscar/" method="GET">
+
+        <input type="number" name="camada" id="camada">
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+    
+
+    {% if cursos %}
+
+    <p>Estamos buscando el: {{camada}}</p>
+
+    <ul>
+	{% for curso in cursos %}
+		<li>NOMBRE: {{curso.nombre}}-CAMADA: {{curso.camada}} </li>
+		
+	{% endfor %}
+
+    </ul>
+   
+    {% endif %}
+<a href="{% url 'List' %}">Ver Lista de Cursos</a>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Estudiantes</h1>
+    <p>Agregar estudiantes</p>
+
+    
+    {% if miFormulario.errors %}
+
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+
+
+    <form action="" method="POST">{% csrf_token %}
+
+        
+        <table>
+
+            {{ miFormulario.as_table }}
+
+
+        </table>
+
+
+        <input type="submit", value="Enviar">
+
+    </form>
+    
+    
+<br>
+<h3>Buscar un profesor:</h3>
+<p>Apellido:</p>
+    <form action="/AppCoder/buscarEstudiante/" method="GET">
+        
+        <input type="text" name="apellido" >
+        
+        <input type="submit" value="buscarEstudiante">
+        
+    </form>
+    
+        
+    {% if estudiantes %}
+    
+    <p>Estamos buscando al alumno: {{apellido}}</p>
+    
+    <ul>
+    {% for estudiante in estudiantes %}
+        <li>NOMBRE: {{estudiante.nombre}}-APELLIDO: {{estudiante.apellido}}-EMAIL: {{estudiante.email}} </li>
+            
+    {% endfor %}
+    
+    </ul>
+       
+    {% endif %}
+    
+    
+            
+
+{% endblock %}

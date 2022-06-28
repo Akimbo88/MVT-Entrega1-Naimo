@@ -1,0 +1,63 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Formulario - Agregar Profesor</h1>
+    
+    {% if miFormulario.errors %}
+
+    <p style="color: red;"> Están mal los datos, revisar</p>
+
+    {% endif %}
+
+
+    <form action="" method="POST">{% csrf_token %}
+
+        <!-- Acá está la magia de Django-->
+        
+        <table>
+
+            {{ miFormulario.as_table }}
+
+
+        </table>
+
+
+        <input type="submit", value="Enviar">
+
+    </form>
+
+<br>
+<br>
+<h3>Buscar un profesor:</h3>
+<p>Apellido:</p>
+    <form action="/AppCoder/buscarProfe/" method="GET">
+    
+        <input type="text" name="apellido" >
+    
+        <input type="submit" value="BuscarProfe">
+    
+    </form>
+
+    
+    {% if profesores %}
+
+    <p>Estamos buscando al profesor: {{apellido}}</p>
+
+    <ul>
+	{% for profesor in profesores %}
+		<li>NOMBRE: {{profesor.nombre}}-APELLIDO: {{profesor.apellido}}-EMAIL: {{profesor.email}} </li>
+		
+	{% endfor %}
+
+    </ul>
+   
+    {% endif %}
+
+
+        
+{% endblock %}
